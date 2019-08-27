@@ -197,7 +197,7 @@ const commandLineArgs = require('command-line-args');
     return markDown;
   };
 
-  if (output === 'markdown') {
+  if (output === 'webfundamentals') {
     const markDown = await getMarkDown(url).catch(e => res.send(e));
     console.log(markDown);
   } else if (output === 'web.dev') {
