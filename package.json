@@ -1,0 +1,35 @@
+{
+  "name": "@web.dev-lify/web.dev-lify",
+  "version": "1.0.0",
+  "description": "Helper script for the migration of Web Fundamentals content over to web.dev",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test:markdown": "node index.js -u https://developers.google.com/web/updates/capabilities -o markdown",
+    "test:web.dev": "node index.js -u https://developers.google.com/web/updates/capabilities -o web.dev",
+    "test": "npm run test:markdown && npm run test:web.dev"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomayac/web.dev-lify.git"
+  },
+  "keywords": [
+    "web.dev",
+    "webfundamentals"
+  ],
+  "author": "Thomas Steiner",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tomayac/web.dev-lify/issues"
+  },
+  "homepage": "https://github.com/tomayac/web.dev-lify#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "command-line-args": "^5.1.1",
+    "request": "^2.88.0"
+  }
+}
