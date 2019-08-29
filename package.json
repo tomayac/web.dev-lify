@@ -1,6 +1,6 @@
 {
   "name": "@web.dev-lify/web.dev-lify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helper script for the migration of content from Web Fundamentals over to web.dev.",
   "main": "index.js",
   "bin": "index.js",

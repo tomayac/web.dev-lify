@@ -13,7 +13,8 @@ const commandLineArgs = require('command-line-args');
   const {url, output} = arguments;
   try {
     if (!url || !url.startsWith('https://developers.google.com/web/')) {
-      throw new RangeError('The URL must start with "https://developers.google.com/web/"');
+      throw new RangeError(
+          'The URL must start with "https://developers.google.com/web/"');
     }
   } catch (e) {
     return console.error(e);
@@ -36,6 +37,8 @@ const commandLineArgs = require('command-line-args');
 
   const webDevLify = (markDown) => {
     const sentinel = 'HI_THERE_I_AM_THE_SENTINEL';
+    const directoryName = url.replace(/.*\/(.*?)$/, '$1');
+    let cliString = `cd src/site/content/en/blog/ && mkdir ${directoryName} && cd ${directoryName} && touch index.md && `;
 
     const rules = {
       removeHeadingAnchors: (s) => {
@@ -118,12 +121,19 @@ const commandLineArgs = require('command-line-args');
         const regExp = new RegExp('\\{#\\s+wf_featured_image:\\s(.*?)\\s+#\\}', 'gm');
         const image = regExp.exec(s)[1];
         s = s.replace(regExp, '');
-        s = s.replace(sentinel, `hero: # ⚠️ Fix hero, old hero was "${image}"!\nalt: # ⚠️ [TODO] Add alt text!\n${sentinel}`);
+        s = s.replace(sentinel, `hero: # ⚠️ [TODO] Fix hero, old hero was "${image}"!\nalt: # ⚠️ [TODO] Add alt text!\n${sentinel}`);
         return s;
       },
 
-      rewriteImageURLs: (s) => {
-        return s.replace(/src="(\/web\/updates\/)/gm, 'data-todo="⚠️ [TODO] Copy image over!" src="https://developers.google.com$1');
+      rewriteImageOrSourceURLs: (s) => {
+        const regExp = /(<(?:img|source)\s+.*?)src="(\/web\/[^"]+)/gm;
+        const urls = Array.from(new Set([...s.matchAll(regExp)].map(img => `https://developers.google.com${img[2]}`)));
+        cliString += urls.map(url => {
+          return `curl -o ${url.replace(/.*\/(.*?)$/, '$1')} ${url}`;
+        }).join(' && ');
+        return s.replace(regExp, (_, prefix, path) => {
+          return `${prefix} src="${path.replace(/.*\/(.*?)$/, '$1')}`;
+        });
       },
 
       rewriteClassAttemptLeftOrRight: (s) => {
@@ -194,15 +204,17 @@ const commandLineArgs = require('command-line-args');
     for (const name in rules) {
       markDown = rules[name](markDown);
     }
-    return markDown;
+    return {markDown, cliString};
   };
 
   if (output === 'webfundamentals') {
-    const markDown = await getMarkDown(url).catch(e => res.send(e));
+    const markDown = await getMarkDown(url).catch(e => console.error(e));
     console.log(markDown);
   } else if (output === 'web.dev') {
-    let markDown = await getMarkDown(url).catch(e => res.send(e));
-    markDown = webDevLify(markDown);
-    console.log(markDown);
+    const markDown = await getMarkDown(url).catch(e => console.error(e));
+    const result = webDevLify(markDown);
+    console.log(result.markDown);
+    console.log('----------');
+    console.log(result.cliString);
   }
 })();
