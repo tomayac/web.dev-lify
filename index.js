@@ -41,10 +41,6 @@ const commandLineArgs = require('command-line-args');
     let cliString = `cd src/site/content/en/blog/ && mkdir ${directoryName} && cd ${directoryName} && touch index.md && `;
 
     const rules = {
-      removeHeadingAnchors: (s) => {
-        return s.replace(/(^#+\s+.+?)\s+\{:\s+.+?\s+\}\s+$/gm, '$1\n');
-      },
-
       removeProjectPath: (s) => {
         return s.replace(/^\s*project_path:\s*.*?$/gm, '');
       },
@@ -170,10 +166,6 @@ const commandLineArgs = require('command-line-args');
 
       removeMultiLineComments: (s) => {
         return s.replace(/\{%\s+comment\s+%\}(?:\s|\S)+\{%\s+endcomment\s+%\}/gm, '');
-      },
-
-      removeCustomAttributesAndAnchors: (s) => {
-        return s.replace(/\{:\s+.+?\s+\}/gm, '');
       },
 
       removeSentinel: (s) => {
