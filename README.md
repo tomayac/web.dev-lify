@@ -1,5 +1,7 @@
 # web.dev-lify
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tomayac/web.dev-lify.svg)](https://greenkeeper.io/)
+
 Helper script for the migration of content from
 [Web Fundamentals](https://developers.google.com/web/) over to [web.dev](https://web.dev/).
 
