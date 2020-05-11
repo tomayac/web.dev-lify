@@ -256,7 +256,11 @@ const commandLineArgs = require('command-line-args');
     };
 
     for (const name in rules) {
-      markDown = rules[name](markDown);
+      try {
+        markDown = rules[name](markDown);
+      } catch (err) {
+        console.warn('Rule "', name, '" failed.');
+      }
     }
     return { markDown, cliString };
   };
