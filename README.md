@@ -5,9 +5,15 @@ Helper script for the migration of content from
 
 ## Usage
 
+Pass a Web Fundamentals URL:
+
 ```bash
 $ npx @web.dev-lify/web.dev-lify -u https://developers.google.com/web/updates/capabilities
 ```
+
+If this fails, pass a *raw* GitHub URL:
+
+$ npx @web.dev-lify/web.dev-lify -u https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/updates/capabilities.md
 
 Make sure to run this from the web.dev root folder.
 The output of the script is twofold:
