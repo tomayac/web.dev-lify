@@ -13,7 +13,9 @@ $ npx @web.dev-lify/web.dev-lify -u https://developers.google.com/web/updates/ca
 
 If this fails, pass a *raw* GitHub URL:
 
+```bash
 $ npx @web.dev-lify/web.dev-lify -u https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/updates/capabilities.md
+```
 
 Make sure to run this from the web.dev root folder.
 The output of the script is twofold:
