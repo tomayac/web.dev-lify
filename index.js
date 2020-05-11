@@ -12,19 +12,21 @@ const commandLineArgs = require('command-line-args');
   const arguments = commandLineArgs(optionDefinitions);
   const {url, output} = arguments;
   try {
-    if (!url || !url.startsWith('https://developers.google.com/web/')) {
+    if (!url || !url.startsWith('https://developers.google.com/web/' || !url.startsWith('https://github.com/google/WebFundamentals/blob/master'))) {
       throw new RangeError(
-          'The URL must start with "https://developers.google.com/web/"');
+          'The URL must start with "https://developers.google.com/web/" or "https://github.com/google/WebFundamentals/blob/master".');
     }
   } catch (e) {
     return console.error(e);
   }
 
   const getMarkDown = async (article) => {
-    article = article.replace(
-        'https://developers.google.com/web/',
-        'https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/');
-    article = article + '.md';
+    if (url.startsWith('https://developers.google.com/web/') {
+      article = article.replace(
+          'https://developers.google.com/web/',
+          'https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/');
+      article = article + '.md';
+    }
     return new Promise((resolve, reject) => {
       request.get(article, (error, response, body) => {
         if (error || response.statusCode !== 200) {

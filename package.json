@@ -1,6 +1,6 @@
 {
   "name": "@web.dev-lify/web.dev-lify",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Helper script for the migration of content from Web Fundamentals over to web.dev.",
   "main": "index.js",
   "bin": "index.js",
@@ -30,6 +30,6 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "command-line-args": "^5.1.1",
-    "request": "^2.88.0"
+    "request": "^2.88.2"
   }
 }
