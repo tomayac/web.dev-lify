@@ -16,11 +16,11 @@ const commandLineArgs = require('command-line-args');
       !url ||
       (!url.startsWith('https://developers.google.com/web/') &&
         !url.startsWith(
-          'https://github.com/google/WebFundamentals/blob/master'
+          'https://raw.githubusercontent.com/google/WebFundamentals/master'
         ))
     ) {
       throw new RangeError(
-        'The URL must start with "https://developers.google.com/web/" or "https://github.com/google/WebFundamentals/blob/master".'
+        'The URL must start with "https://developers.google.com/web/" or "https://raw.githubusercontent.com/google/WebFundamentals/master".'
       );
     }
   } catch (e) {
