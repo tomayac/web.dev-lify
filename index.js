@@ -21,7 +21,7 @@ const commandLineArgs = require('command-line-args');
   }
 
   const getMarkDown = async (article) => {
-    if (url.startsWith('https://developers.google.com/web/') {
+    if (url.startsWith('https://developers.google.com/web/')) {
       article = article.replace(
           'https://developers.google.com/web/',
           'https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/');
