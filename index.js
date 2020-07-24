@@ -142,7 +142,7 @@ const commandLineArgs = require('command-line-args');
       convertTags: (s) => {
         const regExp = new RegExp('\\{#\\s+wf_tags:\\s(.*?)\\s+#\\}', 'gm');
         const tags = [
-          '  - post # post is a required tag for the article to show up in the blog.',
+          '  - blog',
         ].concat(regExp.exec(s)[1].split(','));
         s = s.replace(regExp, '');
         s = s.replace(sentinel, `tags:\n${tags.join('\n  - ')}\n${sentinel}`);
