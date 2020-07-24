@@ -51,6 +51,10 @@ const commandLineArgs = require('command-line-args');
     let cliString = `cd src/site/content/en/blog/ && mkdir ${directoryName} && cd ${directoryName} && touch index.md && `;
 
     const rules = {
+      removeExternalLinksAnnotation: (s) => {
+        return s.replace(/\{:\s+\.external\s+\}/gm, '');
+      },
+
       removeProjectPath: (s) => {
         return s.replace(/^\s*project_path:\s*.*?$/gm, '');
       },
