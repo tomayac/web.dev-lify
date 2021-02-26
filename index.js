@@ -16,11 +16,11 @@ const commandLineArgs = require('command-line-args');
       !url ||
       (!url.startsWith('https://developers.google.com/web/') &&
         !url.startsWith(
-          'https://raw.githubusercontent.com/google/WebFundamentals/master'
+          'https://raw.githubusercontent.com/google/WebFundamentals/main'
         ))
     ) {
       throw new RangeError(
-        'The URL must start with "https://developers.google.com/web/" or "https://raw.githubusercontent.com/google/WebFundamentals/master".'
+        'The URL must start with "https://developers.google.com/web/" or "https://raw.githubusercontent.com/google/WebFundamentals/main".'
       );
     }
   } catch (e) {
@@ -31,7 +31,7 @@ const commandLineArgs = require('command-line-args');
     if (url.startsWith('https://developers.google.com/web/')) {
       article = article.replace(
         'https://developers.google.com/web/',
-        'https://raw.githubusercontent.com/google/WebFundamentals/master/src/content/en/'
+        'https://raw.githubusercontent.com/google/WebFundamentals/main/src/content/en/'
       );
       article = article + '.md';
     }
